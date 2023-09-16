@@ -9,6 +9,7 @@ with
 
     joined as (
         select
+            harvest.harvest_id,
             harvest.harvest_date,
             harvest.batch_id,
             benches.bench_number,
@@ -36,12 +37,6 @@ with
                     else 'Rubbish'
                 end
             ) as quality_score_rag
-            -- lag(harvest_weight, 1) over (
-            --     partition by variety_name order by harvest_date asc
-            -- ) as harvest_weight_previous,
-            -- avg(harvest_weight) over (
-            --     partition by variety_name, harvest_date order by harvest_date asc rows 7 preceding
-            -- ) as harvest_weight_prior_7d
         from joined
     )
 
