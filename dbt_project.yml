@@ -25,6 +25,11 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "dbt_packages"
 
 
+# Set project variables
+vars:
+    "dbt_date:time_zone": "Europe/London"
+
+
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
 
@@ -34,8 +39,10 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   growup_farms:
     # Applies to all files under models/example/
-    staging:
+    silver:
+      database: GROWUP_SILVER_DEV
       materialized: view
 
-    marts:
+    gold:
+      database: GROWUP_GOLD_DEV
       materialized: table
