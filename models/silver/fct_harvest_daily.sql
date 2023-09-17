@@ -63,6 +63,11 @@ with
 
     joined as (
         select
+            {{
+                dbt_utils.generate_surrogate_key(
+                    ["h.harvest_date", "h.batch_id", "h.bench_id", "h.variety_id"]
+                )
+            }} as harvest_id,
             h.harvest_date,
             h.batch_id,
             h.bench_id,
